@@ -1,0 +1,27 @@
+php_flag log_errors on
+php_value error_log  errors.txt
+
+RewriteEngine On
+RewriteRule ^$                                                      casais/ [L]
+RewriteRule ^casais/?$                                              views/casais.create.php [L]
+RewriteRule ^navegando/?$                                           views/navegando.create.php [L]
+RewriteRule ^passageiros/?$                                         views/passageiros.php [L]
+
+RewriteRule ^casais/([a-z][a-zA-Z-]+)/?$                            includes/casais/$1.php [L]
+RewriteRule ^casais/editar/([a-z][a-zA-Z-]+)/?$                     views/casais.edit.php?url=$1 [L]
+RewriteRule ^casais/excluir/([a-z][a-zA-Z-]+)/?$                    includes/casais/excluir.php?url=$1 [L]
+RewriteRule ^navegando/([a-z][a-zA-Z-]+)/?$                         includes/navegando/$1.php  [L]
+RewriteRule ^navegando/editar/([A-Z][a-zA-Z-]+)/?$                  views/navegando.edit.php?url=$1 [L]
+RewriteRule ^navegando/excluir/([A-Z][a-zA-Z-]+)/?$                 includes/navegando/excluir.php?url=$1 [L]
+
+RewriteRule ^navegando/([a-z][a-zA-Z-]+)/?$                         includes/navegando/$1.php  [L]
+
+RewriteRule ^qr/([a-z][a-zA-Z]{5}+)/?$                              views/casais.qrcode.php?url=$1 [L]
+RewriteRule ^qr/([A-Z][a-zA-Z]{5}+)/?$                              views/navegando.qrcode.php?url=$1 [L]
+
+RewriteRule ^casais/contrato/([a-zA-Z]+)/?$                         views/casais.contract.php?url=$1 [L]
+RewriteRule ^navegando/contrato/([a-zA-Z]+)/?$                      views/navegando.contract.php?url=$1 [L]
+
+RewriteRule ^casal/([a-zA-Z]{6}+)/foto/([a-z0-9.]+)?$               uploads/$2 [L]
+RewriteRule ^navegando/([a-zA-Z]{6}+)/foto/([a-z0-9.]+)?$           uploads/$2 [L]
+
